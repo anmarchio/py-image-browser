@@ -1,7 +1,8 @@
-# Image Indexer
+# PyImageBrowser
 
-This little script allows to walk through a given directory and collect all image files.
+This little script allows to walk through a given directory and collect all image files written in python.
 The list of image files is then written to an HTML file containing a sortable and searchable table with file links to simplify image file management.
+The tool is designed to run platform independent.
 
 ## Setup and Configuration
 

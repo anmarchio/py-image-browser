@@ -12,94 +12,17 @@ def create_list(dirname, subdir, subdir2, subdir3):
     return html
 
 
-def create_table_of_contents(path):
-    html = "<table class=\"table\">\n"
-    html = html + "<thead class=\"thead-dark\">\n<tr>\n" \
-                  "<th scope=\"col\">#</th>\n"
-    html = html + "<th scope=\"col\">Run</th>\n"
-    html = html + "<th scope=\"col\">Highest</th>\n"
-    html = html + "<th scope=\"col\">Lowest</th>\n"
-    html = html + "</tr>\n</thead>\n<tbody>\n"
-    i = 1
-    for dirname in os.listdir(path):
-        html = html + "<tr><th scope=\"row\">" + str(i) + "</th>\n"
-        html = html + "<td><a href=\"#anchor" \
-               + dirname + "\">" \
-               + dirname + \
-               "</a></td>"
-        html = html + "<td>0</td>\n"
-        html = html + "<td>0</td>\n"
-        html = html + "</tr>"
-        i = i + 1
-    html = html + "\n</tbody>\n</table>"
-    return html
-
-
-def create_html_report_details(path):
-    html = ""
-    for dirname in os.listdir(path):
-        html = html + "<h2 id=anchor" + dirname + ">Report " + dirname + "</h2>\n"
-        html = html + "<p>\n" + \
-               "<button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#" + \
-               dirname + \
-               "\" aria-expanded=\"false\" aria-controls=\"" + dirname + "\">" + \
-               "Show" + \
-               "</button>\n" + \
-               "<a class=\"btn btn-primary\" data-toggle=\"contents\" href=\"#contents\" " \
-               "role=\"button\" aria-expanded=\"false\" aria-controls=\"contents\">" \
-               "To Contents" + \
-               "</a>\n</p>\n" + \
-               "<div class=\"collapse\" id=\"" + \
-               dirname + \
-               "\">\n<div class=\"card card-body\">\n"
-        html = html + "<h3>Analyzer</h3>\n"
-        analyzer_path = os.path.join(path, dirname, "Analyzer")
-        if os.path.exists(analyzer_path):
-            html = html + create_list(analyzer_path)
-        else:
-            html = html + "<p>Empty</p>\n"
-
-        html = html + "<h3>Config</h3>\n"
-        # config_path = os.path.join(path, dirname, "Grid")
-        # if os.path.exists(config_path):
-        # else:
-        html = html + "<p>Empty</p>\n"
-
-        html = html + "<h3>Grid</h3>\n"
-        grid_path = os.path.join(path, dirname, "Grid")
-        if os.path.exists(grid_path):
-            html = html + create_list(grid_path)
-        else:
-            html = html + "<p>Empty</p>\n"
-
-        html = html + "<h3>Images</h3>\n"
-        images_path = os.path.join(path, dirname, "Images")
-        if os.path.exists(images_path):
-            html = html + create_list(images_path)
-        else:
-            html = html + "<p>Empty</p>\n"
-
-        html = html + "<h3>Log</h3>\n"
-        log_path = os.path.join(path, dirname, "Log", "date.txt")
-        if os.path.exists(log_path):
-            f = open(log_path, "r")
-            html = html + "<p>" + f.read() + "</p>\n"
-        else:
-            html = html + "<p>Empty</p>\n"
-
-        html = html + "<a href=\"#contents\">Up</a>\n"
-        html = html + "</div></div>"
-        html = html + "<hr />\n"
-
-    return html
-
-
 def read_images_from_path(source_path):
     dirname = ""
     subdir = ""
     subdir2 = ""
     subdir3 = ""
     html = ""
+    if os.path.isdir(os.path.join(source_path)):
+        print("test")
+    else:
+        html = html + create_list(source_path)
+
     for dirname in os.listdir(source_path):
         if os.path.isdir(os.path.join(os.path.join(source_path, dirname))):
             for subdir in os.listdir(os.path.join(source_path, dirname)):
