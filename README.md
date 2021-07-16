@@ -21,12 +21,26 @@ Make sure to install all local requirements using:
 
 `pip install -r requirements.txt`
 
-Then run the script using the following command:
+## Run Program
+
+Run the script using the following command:
 
 `python main.py --dirpath <path-to-image-directory> --outpath <destination-for-index-file>`
 
-## Code basis
+*Note:* Do not use the same destination and input directory in order to avoid memory errors.
 
-The following style and page logic has been used for implementation:
+Use `--outpath "."` if you want to write the index HTML file to the directory which the script is executed from.
 
+The program iterates through all directories in the given path and writes all image files to an HTML table.
+Only image files will be collected which includes the following formats:
+
+- `bmp`
+- `gif`
+- `jpg/jpeg`
+- `png`
+- `tif/tiff`
+
+## Frameworks
+
+The HTML page is built using a simlpe bootstrap style and jquery script. The script is based on w3school boostrap and jquery as proposed in the following tutorial: 
 https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_filters_table&stacked=h
