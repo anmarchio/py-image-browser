@@ -17,10 +17,6 @@ cd <project-directory>
 python3 -m venv venv
 ```
 
-Make sure to install all local requirements using:
-
-`pip install -r requirements.txt`
-
 ## Run Program
 
 Run the script using the following command:
